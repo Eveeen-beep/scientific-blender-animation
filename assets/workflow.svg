@@ -1,0 +1,105 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="840" height="952" viewBox="0 0 840 952" role="img" aria-labelledby="title description">
+  <title id="title">Blender 科研动画制作与恢复流程</title>
+  <desc id="description">主流程依次确认范围与现场，建立科学依据、参数和分镜，制作基础几何、代表过程、工艺状态与运动，组织主镜头、同步小框与语言，再检查数值、关键帧和短预览。需要修正时定位问题并做局部补丁，返回核验。检查通过且已授权完整输出后冻结工程、依赖与来源凭据，制作可恢复图像序列，完成编码、结构检查、连续播放及交付归档。恢复任务先核对磁盘、进程、日志与交接记录，定位尚未完成的环节，按实际阶段继续制作或渲染。</desc>
+  <defs>
+    <marker id="arrow" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto" markerUnits="userSpaceOnUse">
+      <path d="M0 0 L8 4 L0 8 Z" fill="#577184"/>
+    </marker>
+    <marker id="teal-arrow" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto" markerUnits="userSpaceOnUse">
+      <path d="M0 0 L8 4 L0 8 Z" fill="#0f766e"/>
+    </marker>
+    <marker id="amber-arrow" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto" markerUnits="userSpaceOnUse">
+      <path d="M0 0 L8 4 L0 8 Z" fill="#a96518"/>
+    </marker>
+    <style>
+      text { font-family: "Noto Sans CJK SC", "Microsoft YaHei", "PingFang SC", sans-serif; }
+      .card { fill: #fff; stroke: #cfdae3; stroke-width: 1.5; }
+      .label { font-size: 23px; font-weight: 600; fill: #193447; }
+      .detail { font-size: 21px; fill: #425d70; }
+      .number { font-size: 19px; font-weight: 600; fill: #0f766e; }
+      .line { fill: none; stroke: #577184; stroke-width: 2; marker-end: url(#arrow); }
+      .resume { fill: none; stroke: #0f766e; stroke-width: 2; stroke-dasharray: 7 5; marker-end: url(#teal-arrow); }
+      .repair { fill: none; stroke: #a96518; stroke-width: 2; marker-end: url(#amber-arrow); }
+    </style>
+  </defs>
+
+  <rect width="840" height="952" rx="18" fill="#f7fafc"/>
+  <text x="40" y="47" font-size="28" font-weight="700" fill="#193447">从科学依据到可续作的动画</text>
+  <text x="40" y="75" font-size="19" fill="#577184">分阶段推进 · 按证据核验 · 按范围续作</text>
+
+  <g>
+    <rect class="card" x="40" y="96" width="520" height="56" rx="10"/>
+    <text class="number" x="62" y="132">01</text>
+    <text class="label" x="110" y="132">确认任务范围与现有现场</text>
+    <path class="line" d="M300 152 V171"/>
+
+    <rect class="card" x="40" y="172" width="520" height="56" rx="10"/>
+    <text class="number" x="62" y="208">02</text>
+    <text class="label" x="110" y="208">科学依据、参数与分镜</text>
+    <path class="line" d="M300 228 V247"/>
+
+    <rect class="card" x="40" y="248" width="520" height="80" rx="10"/>
+    <text class="number" x="62" y="283">03</text>
+    <text class="label" x="110" y="282">基础几何与代表过程</text>
+    <text class="detail" x="110" y="312">工艺状态与运动</text>
+    <path class="line" d="M300 328 V347"/>
+
+    <rect class="card" x="40" y="348" width="520" height="56" rx="10"/>
+    <text class="number" x="62" y="384">04</text>
+    <text class="label" x="110" y="384">主镜头、同步小框与语言</text>
+    <path class="line" d="M300 404 V423"/>
+
+    <rect class="card" x="40" y="424" width="520" height="80" rx="10"/>
+    <text class="number" x="62" y="459">05</text>
+    <text class="label" x="110" y="458">数值核验与关键帧</text>
+    <text class="detail" x="110" y="488">覆盖关键转折的短预览</text>
+    <path class="line" d="M300 504 V523"/>
+
+    <rect x="40" y="524" width="520" height="64" rx="10" fill="#e3f2ed" stroke="#0f766e" stroke-width="1.5"/>
+    <text x="300" y="564" text-anchor="middle" font-size="24" font-weight="700" fill="#0c655e">本轮检查是否通过？</text>
+    <path d="M300 588 V631" fill="none" stroke="#0f766e" stroke-width="2" marker-end="url(#teal-arrow)"/>
+    <text x="318" y="615" font-size="20" fill="#0c655e">通过且已授权完整输出</text>
+
+    <rect class="card" x="40" y="632" width="520" height="80" rx="10"/>
+    <text class="number" x="62" y="667">06</text>
+    <text class="label" x="110" y="666">冻结工程、依赖与来源凭据</text>
+    <text class="detail" x="110" y="696">确认版本身份与可重现条件</text>
+    <path class="line" d="M300 712 V731"/>
+
+    <rect class="card" x="40" y="732" width="520" height="80" rx="10"/>
+    <text class="number" x="62" y="767">07</text>
+    <text class="label" x="110" y="766">可恢复图像序列</text>
+    <text class="detail" x="110" y="796">编码、结构检查与连续播放</text>
+    <path class="line" d="M300 812 V831"/>
+
+    <rect x="40" y="832" width="520" height="56" rx="10" fill="#193447"/>
+    <text x="62" y="868" font-size="19" font-weight="600" fill="#93d6c7">08</text>
+    <text x="110" y="868" font-size="23" font-weight="600" fill="#fff">交付与可追溯归档</text>
+  </g>
+
+  <g>
+    <rect x="590" y="96" width="200" height="280" rx="12" fill="#eaf5f1" stroke="#a5cfc1" stroke-width="1.5"/>
+    <text x="690" y="132" text-anchor="middle" font-size="23" font-weight="700" fill="#0c655e">恢复或续作</text>
+    <path d="M612 150 H768" stroke="#b7d9cc"/>
+    <text x="690" y="185" text-anchor="middle" font-size="20" fill="#254e49">核对磁盘、进程</text>
+    <text x="690" y="214" text-anchor="middle" font-size="20" fill="#254e49">日志与交接记录</text>
+    <path d="M690 229 V249" fill="none" stroke="#0f766e" stroke-width="2" marker-end="url(#teal-arrow)"/>
+    <text x="690" y="279" text-anchor="middle" font-size="21" font-weight="600" fill="#254e49">定位尚未完成</text>
+    <text x="690" y="309" text-anchor="middle" font-size="21" font-weight="600" fill="#254e49">的环节</text>
+    <text x="690" y="351" text-anchor="middle" font-size="19" fill="#0c655e">按实际阶段继续</text>
+    <path class="resume" d="M590 288 H561"/>
+    <path class="resume" d="M790 288 H812 V772 H561"/>
+  </g>
+
+  <g>
+    <rect x="590" y="486" width="200" height="136" rx="12" fill="#fff5e7" stroke="#dfba86" stroke-width="1.5"/>
+    <text x="690" y="520" text-anchor="middle" font-size="22" font-weight="700" fill="#8b5112">需要修正</text>
+    <text x="690" y="558" text-anchor="middle" font-size="21" fill="#775027">定位问题</text>
+    <text x="690" y="589" text-anchor="middle" font-size="21" fill="#775027">局部补丁</text>
+    <path class="repair" d="M560 556 H589"/>
+    <path class="repair" d="M690 486 V414 H576 V464 H561"/>
+    <text x="611" y="451" font-size="19" fill="#8b5112">返回核验</text>
+  </g>
+
+  <text x="40" y="928" font-size="19" fill="#577184">阶段可裁剪；已有证据可沿用，用户指定的范围与停止点优先。</text>
+</svg>
