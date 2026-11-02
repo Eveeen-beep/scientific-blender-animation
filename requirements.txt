@@ -1,0 +1,2 @@
+# For scripts/sequence_audit.py; install in normal Python, not automatically in Blender.
+Pillow>=10.0

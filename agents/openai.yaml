@@ -1,0 +1,4 @@
+interface:
+  display_name: "Blender 科研动画工作流"
+  short_description: "从连接与机理拆解到分阶段建模、动画核验、双语渲染和断点恢复"
+  default_prompt: "使用 $scientific-blender-animation，根据我的科研目标和现有工程阶段制作或续作 Blender 动画，先核对现场与机理，再完成本轮授权的检查或输出。"
