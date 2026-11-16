@@ -21,6 +21,14 @@ class SkillPackageTests(unittest.TestCase):
         self.assertEqual(metadata["name"], "scientific-blender-animation")
         self.assertIsInstance(metadata["description"], str)
         self.assertTrue(metadata["description"].strip())
+        self.assertLessEqual(len(metadata["description"]), 1024)
+        if "compatibility" in metadata:
+            self.assertIsInstance(metadata["compatibility"], str)
+            self.assertTrue(0 < len(metadata["compatibility"]) <= 500)
+        for key, value in metadata.get("metadata", {}).items():
+            with self.subTest(metadata_key=key):
+                self.assertIsInstance(key, str)
+                self.assertIsInstance(value, str)
 
     def test_skill_local_markdown_links_resolve_inside_package(self):
         source = (ROOT / "SKILL.md").read_text(encoding="utf-8")
@@ -36,6 +44,21 @@ class SkillPackageTests(unittest.TestCase):
                 self.assertTrue(resolved.is_relative_to(ROOT), "Link escapes the package")
                 self.assertTrue(resolved.is_file(), "Local link target is missing")
         self.assertGreater(local_count, 0)
+
+    def test_all_document_links_resolve_inside_package(self):
+        """Catch broken relative paths across the platform guides and templates."""
+        for document in ROOT.rglob("*.md"):
+            if ".git" in document.parts:
+                continue
+            source = document.read_text(encoding="utf-8")
+            for target in re.findall(r"\[[^\]]*\]\(([^)\s]+)\)", source):
+                parsed = urlsplit(target)
+                if parsed.scheme or parsed.netloc or not parsed.path:
+                    continue
+                with self.subTest(document=str(document.relative_to(ROOT)), target=target):
+                    resolved = (document.parent / unquote(parsed.path)).resolve()
+                    self.assertTrue(resolved.is_relative_to(ROOT), "Link escapes the package")
+                    self.assertTrue(resolved.exists(), "Local document link target is missing")
 
 
 if __name__ == "__main__":

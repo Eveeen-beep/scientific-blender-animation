@@ -2,11 +2,28 @@
 
 **面向科研机理、实验装置与工艺过程的 Blender 动画技能。**
 
-让 Codex 从科学依据和现有工程出发，完成机理拆解、分阶段建模、动画与视觉核验、双语输出、断点续渲和可追溯归档。交付目标既包括可展示的视频，也包括能够继续修改的原生 `.blend` 工程、实际执行脚本和验证记录。
+让具备文件与执行工具的 AI agent 从科学依据和现有工程出发，完成机理拆解、分阶段建模、动画与视觉核验、双语输出、断点续渲和可追溯归档。交付目标既包括可展示的视频，也包括能够继续修改的原生 `.blend` 工程、实际执行脚本和验证记录。
 
-本仓库是一套 **Codex Skill、参考文档、项目模板与辅助脚本**。安装后，Codex 可依据 [SKILL.md](SKILL.md) 组织制作过程；实际建模和渲染仍需要可用的 Blender 环境与执行工具。
+本仓库是一套采用 **Agent Skills 结构的科研动画工作流、参考文档、项目模板与辅助脚本**，当前版本 **1.2.0**。同一份 [SKILL.md](SKILL.md) 可供 Codex、Claude Code、Cursor 等支持该格式的 agent 读取；各平台的安装和调用方式不同。
 
-[快速开始](#快速开始) · [下载 ZIP](https://github.com/Eveeen-beep/scientific-blender-animation/archive/refs/heads/main.zip) · [使用示例](#使用示例) · [辅助脚本](#辅助脚本) · [可选开源工具](#可选开源工具) · [能力边界](#能力边界) · [许可](#许可)
+**验证状态先说明：Codex 有本地科研动画项目实践；Claude Code、Cursor 本轮只核对了官方格式与安装约定，尚未在这两个产品内实际安装、连接 Blender 或完成动画验收。** 包结构检查、脚本测试、Blender 运行自检和宿主端到端验证分别记录，详见[兼容性与实测范围](docs/compatibility.zh-CN.md)。
+
+[新手入门](docs/getting-started.zh-CN.md) · [下载 ZIP](https://github.com/Eveeen-beep/scientific-blender-animation/archive/refs/heads/main.zip) · [兼容性](docs/compatibility.zh-CN.md) · [使用示例](#使用示例) · [辅助脚本](#辅助脚本) · [可选开源工具](#可选开源工具) · [许可](#许可)
+
+## 不懂编程，从这里开始
+
+1. [下载 ZIP](https://github.com/Eveeen-beep/scientific-blender-animation/archive/refs/heads/main.zip)，解压，将包含 `SKILL.md` 的完整文件夹命名为 `scientific-blender-animation`。不要只取一个文件。
+2. 选择你已经使用的 AI 工具，按对应中文教程复制文件夹并确认加载：
+
+| 你使用的工具 | 中文安装与使用教程 | 当前验证状态 |
+|---|---|---|
+| Codex | [Codex 教程](docs/install-codex.zh-CN.md) | 有本地项目实践；新版包和辅助脚本检查范围另列 |
+| Claude Code | [Claude Code 教程](docs/install-claude-code.zh-CN.md) | 官方格式/目录核对，宿主实测尚未执行 |
+| Cursor | [Cursor 教程](docs/install-cursor.zh-CN.md) | 官方格式/目录核对，宿主实测尚未执行 |
+
+3. 将教程中的“首次只读检查”提示词直接发给 agent。它应报告真实 Blender 版本和执行环境，然后再开始你的动画。
+
+**下载 skill 不会自动安装 Blender、接管本机或提供模型账号。** 实际制作需要 agent 获得本轮授权的文件读写和执行能力。MCP 是一种可选连接方式，不是所有用户都必须安装的前提。
 
 ## 为什么使用
 
@@ -33,7 +50,7 @@
 | 渲染与交付 | 来源冻结、图像序列、补帧判断、视频编码与播放核验、依赖清单 |
 | 恢复与归档 | 先查文件和活动任务，复用已验证成果；复制后核验，保留可续作说明 |
 
-这些能力由技能指导 Codex 按任务实现。仓库中的两个 Python 脚本分别负责工程摘要和 PNG 序列审核，不会自动生成上述全部成果。
+这些能力由技能指导当前 agent 按任务实现。仓库中的两个 Python 脚本分别负责工程摘要和 PNG 序列审核，不会自动生成上述全部成果。
 
 ## 工作流程
 
@@ -45,27 +62,24 @@
 
 ### 1. 准备环境
 
-- **Codex：** 使用支持本地 Skills 的环境，并具备本轮任务所需的文件、命令行或 Blender 连接能力。
+- **Agent：** 使用支持 Agent Skills 或能明确读取本技能文档的环境，并具备本轮任务所需的文件、命令行或 Blender 连接能力。格式可读不等于本机 Blender 已连接。
 - **Blender：** 可打开目标工程并执行 Python。按项目选择版本，记录完整版本与引擎；本仓库不提供覆盖全部 Blender 版本的兼容性保证。
 - **普通 Python：** 运行 PNG 审核工具时建议 Python 3.10 或更高，并安装 Pillow。Blender 内运行的工程检查脚本使用 Blender 自带的 `bpy`。
 - **按需组件：** 视频编码可用 FFmpeg，也可按参考流程使用独立的 Blender VSE 编码工程。连接器、领域插件和渲染农场均为可选项。
 
-### 2. 安装技能
+### 2. 按你的平台安装
 
-**方式 A：Download ZIP 或手动复制**
+完整步骤、Windows 文件夹操作、调用方式及常见问题见 [Codex](docs/install-codex.zh-CN.md)、[Claude Code](docs/install-claude-code.zh-CN.md)、[Cursor](docs/install-cursor.zh-CN.md) 教程。
 
-1. 在本仓库页面选择 **Code → Download ZIP**，解压得到包含 `SKILL.md` 的文件夹。
-2. 将该文件夹命名为 `scientific-blender-animation`，保留 `references/`、`assets/`、`scripts/` 和 `agents/` 的相对位置。
-3. 将完整文件夹放入一个技能目录：
+| 平台 | 常用个人安装目录 | 原生调用示例 |
+|---|---|---|
+| Codex | `~/.agents/skills/scientific-blender-animation/` | `$scientific-blender-animation` |
+| Claude Code（本地） | `~/.claude/skills/scientific-blender-animation/` | `/scientific-blender-animation` |
+| Cursor（本地） | `~/.cursor/skills/scientific-blender-animation/` | 在 Agent 输入 `/` 并选择技能 |
 
-| 使用范围 | 安装位置 |
-|---|---|
-| 当前用户的项目均可使用 | `$HOME/.agents/skills/scientific-blender-animation/` |
-| 仅当前仓库使用 | `<项目根目录>/.agents/skills/scientific-blender-animation/` |
+`~` 表示当前用户主目录。平台目录与菜单会变化，教程附有官方来源与核对日期。其他已配置路径以宿主实际加载结果为准。**不要把 Codex 的 `$skill-installer` 当作所有 agent 都有的命令。**
 
-这里的 `$HOME` 表示用户主目录；不要把示例文字作为真实目录名。上述目录约定来自 [Codex 官方技能文档](https://learn.chatgpt.com/docs/build-skills)。其他安装器或既有环境可能使用自身配置的技能目录，以其实际配置为准。
-
-检查最终层级，避免 ZIP 多嵌套一层：
+无论用哪个平台，都保留整个目录及相对引用，避免 ZIP 多嵌套一层：
 
 ```text
 skills/
@@ -77,23 +91,14 @@ skills/
     └── scripts/
 ```
 
-**方式 B：使用 Skill Installer**
-
-如果你的 Codex 环境提供 `$skill-installer`，可发送：
-
-```text
-使用 $skill-installer，从 https://github.com/Eveeen-beep/scientific-blender-animation 安装 scientific-blender-animation。
-这个仓库的 SKILL.md 位于仓库根目录，请安装完整技能目录。
-```
-
-上面的链接指向本仓库。安装目录以安装器返回结果为准；如已安装同名技能，先确认保留或更新哪一份。
+Cursor 当前“从 GitHub 仓库导入”的插件入口要求插件 marketplace 配置，本仓库当前提供的是独立 skill，不提供该插件入口。请使用文件夹安装，不把粘贴仓库 URL 写成保证可用的一键安装。其他平台也应区分独立 skill 和插件的安装路线。
 
 ### 3. 开始一个任务
 
-在新会话中调用技能，并提供已有工程或研究材料、目标观众和本轮输出范围：
+按平台教程确认加载后，提供已有工程或研究材料、目标观众和本轮输出范围。下面是通用提示词，原生快捷调用符号按平台替换：
 
 ```text
-使用 $scientific-blender-animation。
+请使用 scientific-blender-animation 技能。
 我想制作一段解释实验装置工作原理的 Blender 动画。
 请先根据我提供的装置图和参数，明确因果链、运动主体与允许简化，
 再完成基础场景和代表过程，输出关键帧供检查。
@@ -109,7 +114,7 @@ skills/
 **从材料加工过程制作科研动画**
 
 ```text
-使用 $scientific-blender-animation，根据我提供的设备图和工艺说明制作动画。
+请按 scientific-blender-animation 技能，根据我提供的设备图和工艺说明制作动画。
 观众需要看懂供给、接触、形貌变化和下一轮工艺的关系。
 先核对单位与材料去向，让主画面和局部剖面共用同一工艺状态。
 完成关键帧和覆盖停流、回位、继续阶段的短预览。
@@ -118,7 +123,7 @@ skills/
 **续作已有工程，只调整展示效果**
 
 ```text
-使用 $scientific-blender-animation，继续我指定的 .blend 工程。
+请按 scientific-blender-animation 技能，继续我指定的 .blend 工程。
 本轮只修改设备材质、相机可见背景和标签可读性。
 保留几何、工艺时序、运动、相机和灯光，另存新版本。
 请用相同帧对比修改效果，并报告实际检查过的范围。
@@ -127,7 +132,7 @@ skills/
 **从科研数据构建可解释的画面**
 
 ```text
-使用 $scientific-blender-animation，将我提供的仿真结果用于三维演示。
+请按 scientific-blender-animation 技能，将我提供的仿真结果用于三维演示。
 先确认数据格式、坐标、单位、时间和字段定义，检查少量已知值。
 将真实结果与视觉样式分离，保持跨帧色标含义一致。
 如需外部工具，先说明任务缺口，核对版本并在独立小样中验证。
@@ -136,7 +141,7 @@ skills/
 **恢复中断渲染并输出双语视频**
 
 ```text
-使用 $scientific-blender-animation，读取项目交接记录和现有渲染目录。
+请按 scientific-blender-animation 技能，读取项目交接记录和现有渲染目录。
 先判断是否仍有活动渲染，确认冻结工程与已有帧的来源关系。
 检查全部目标 PNG，列出缺帧、坏帧与仅需目视复核的暗帧。
 同源条件成立后只补必要帧，再完成中文和英文视频的编码、解码与播放检查。
@@ -230,7 +235,7 @@ python ./scripts/sequence_audit.py --help
 
 ### 长任务可恢复
 
-阶段完成和长任务开始前更新 [CODEX_HANDOFF.md](assets/CODEX_HANDOFF.md)，分别记录实现完成、审核完成和用户确认。恢复时重新检查磁盘、进程与日志，定位未完成环节；对于同源且有效的已有帧，采用补帧方式继续输出。
+阶段完成和长任务开始前更新项目交接记录，分别记录实现完成、审核完成和用户确认。新项目可用 [PROJECT_HANDOFF.md](assets/PROJECT_HANDOFF.md)，已有 `CODEX_HANDOFF.md` 等命名继续沿用，不因换 agent 改名或维护两套状态。恢复时重新检查磁盘、进程与日志，定位未完成环节；对于同源且有效的已有帧，采用补帧方式继续输出。
 
 双语交付共享几何、动画与材质，仅允许有记录的文本与排版差异。两种语言都需覆盖实际动态阶段，在目标播放尺寸检查术语、溢出、遮挡和可读性。
 
@@ -262,11 +267,13 @@ scientific-blender-animation/
 ├── README.md                         # 项目介绍、安装与使用
 ├── LICENSE                           # 本仓库许可证
 ├── SKILL.md                          # 技能入口与制作约定
+├── docs/                             # 新手入口、三平台教程与实测边界
 ├── agents/
-│   └── openai.yaml                   # 技能显示信息与默认提示词
+│   └── openai.yaml                   # OpenAI 宿主可选界面配置；不属通用运行依赖
 ├── assets/
 │   ├── PROJECT_BRIEF.md              # 任务范围、科学参数与验收模板
-│   ├── CODEX_HANDOFF.md              # 交接与恢复模板
+│   ├── PROJECT_HANDOFF.md            # 跨 agent 交接与恢复模板
+│   ├── CODEX_HANDOFF.md              # 旧命名模板，兼容既有项目
 │   └── EXTERNAL_COMPONENT_RECORD.md  # 外部软件、数据与素材采用记录
 ├── references/
 │   ├── connection-and-recovery.md    # 接入、只读核对与断点恢复
@@ -299,7 +306,7 @@ scientific-blender-animation/
 
 新增领域方法时，请同时说明科学依据、示意边界、依赖版本和实际测试范围。仓库文档中的推荐方式应能追溯到证据或可复现检查。
 
-开发与验证方法见 [CONTRIBUTING.md](CONTRIBUTING.md) 和 [tests/README.md](tests/README.md)。仓库附带 20 项自动检查，覆盖序列分类、复用来源、输出保护及技能包结构；这些检查不等于 Blender 渲染、科学正确性或全部插件兼容性测试。
+开发与验证方法见 [CONTRIBUTING.md](CONTRIBUTING.md) 和 [tests/README.md](tests/README.md)。自动检查覆盖序列分类、复用来源、输出保护及技能包结构；实际数量和本次运行范围见测试记录，不等于三种宿主、全部 Blender 版本或全部插件兼容性测试。报告新的平台实测时请附产品版本、操作系统、工具路线、输入、步骤、结果和证据，不能仅凭“能读文档”标记整个流程通过。
 
 ## 许可
 

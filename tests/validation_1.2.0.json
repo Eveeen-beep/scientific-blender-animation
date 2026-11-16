@@ -1,0 +1,66 @@
+{
+  "skill_version": "1.2.0",
+  "date": "2026-11-16",
+  "environment": {
+    "os": "Windows",
+    "python": "3.12.14",
+    "pillow": "13.0.0",
+    "pyyaml": "6.0.3"
+  },
+  "unit_tests": {
+    "command": "python -m unittest discover -s tests -v",
+    "passed": 21,
+    "failed": 0
+  },
+  "skill_metadata_validation": {
+    "passed": true,
+    "fields": [
+      "name",
+      "description",
+      "metadata"
+    ]
+  },
+  "blender_smoke": {
+    "passed": true,
+    "blender_version": "5.2.0 LTS",
+    "engine_reported_not_rendered": "BLENDER_EEVEE",
+    "python_version": "3.12.14",
+    "checks": [
+      "disposable factory scene saved",
+      "real inventory written",
+      "timeline/resolution reported",
+      "animation entry reported",
+      "source blend SHA256 unchanged"
+    ],
+    "rendered": false,
+    "agent_host_installation_tested": false,
+    "limitations": [
+      "No render, animation frame sweep or scientific validation",
+      "No Claude Code or Cursor product integration tested"
+    ]
+  },
+  "host_product_tests": {
+    "Codex": {
+      "scope": "Local research-animation workflow experience; v1.2 package checks executed from Codex",
+      "new_full_animation_end_to_end_test": false
+    },
+    "Claude Code": {
+      "documentation_checked": true,
+      "installed_and_invoked_in_product": false,
+      "blender_connected_in_product": false
+    },
+    "Cursor": {
+      "documentation_checked": true,
+      "installed_and_invoked_in_product": false,
+      "blender_connected_in_product": false
+    }
+  },
+  "production_projects_opened_or_modified": false,
+  "full_animation_rendered": false,
+  "tested_helper_sources": {
+    "scripts/inspect_blend.py": "c1561e53abfae1ca052521a0bfeac1267f8432b64907e119151d472d4bb5f238",
+    "scripts/sequence_audit.py": "8416337f74fee01a303ae7ce3a4eaf77d6860b8f0784aaaae4cad3de844f8623",
+    "tests/blender_runtime_smoke.py": "f8c60d9a476950bbeccb435009a9927beca732c1ac62fb5dcb44f859f8cd12ec"
+  },
+  "ci_results": "See GitHub Actions for the matching commit; not inferred from workflow configuration."
+}
